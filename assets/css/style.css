@@ -1,0 +1,300 @@
+/* AIdoforyou Metadata — v1.0.3 (Clean Sticky Image & Minimalist Copy Icons) */
+#afy-meta-app, #afy-meta-app * { box-sizing: border-box; }
+#afy-meta-app {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  max-width: 900px; margin: 0 auto;
+  color: #0f172a; line-height: 1.5; font-size: 15px;
+}
+@keyframes afy-meta-fade-up { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes afy-meta-spin    { to { transform: rotate(360deg); } }
+.afy-meta-fade-in { animation: afy-meta-fade-up .4s cubic-bezier(.16,1,.3,1) both; }
+
+/* ── Topbar ─────────────────────────────────────────────────────── */
+#afy-meta-app .afy-meta-topbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:15px; padding:0 4px; flex-wrap:wrap; gap:8px; }
+#afy-meta-app .afy-meta-brand  { display:flex; align-items:center; gap:8px; font-size:1.1rem; font-weight:700; color: #1e293b; }
+#afy-meta-app .afy-meta-brand svg { color:#10b981; } 
+#afy-meta-app .afy-meta-credits-pill {
+  display:inline-flex; align-items:center; gap:6px;
+  background:#fff; border:1px solid #e2e8f0; border-radius:999px;
+  padding:5px 14px; font-size:.82rem; font-weight:600; color:#475569;
+}
+#afy-meta-app .afy-meta-credits-pill svg { color:#f59e0b; }
+
+/* ── Alert ──────────────────────────────────────────────────────── */
+#afy-meta-app .afy-meta-alert {
+  display:flex; align-items:flex-start; gap:10px;
+  background:#fef2f2; color:#b91c1c; border:1px solid #fecaca;
+  border-radius:10px; padding:14px 16px; margin-bottom:18px;
+  font-size:.9rem; font-weight:500; animation:afy-meta-fade-up .25s ease;
+}
+
+/* ── Workspace card base ─────────────────────────────────────────────── */
+#afy-meta-app .afy-meta-workspace {
+  background:#fff; border:1px solid #e2e8f0; border-radius:16px;
+  padding:36px; box-shadow:0 1px 15px rgba(0,0,0,.04); min-height:280px;
+  margin-bottom: 20px;
+}
+
+/* ── MAIN GRID (Persistent Image Layout) ─────────────────────── */
+#afy-meta-app .afy-meta-main-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width:768px) { #afy-meta-app .afy-meta-main-grid { grid-template-columns: 1fr; } }
+
+/* ── KIRI: Persistent Image Col (CLEAN) ────────────────────────────────── */
+#afy-meta-app .afy-meta-persistent-image-col {
+  padding: 24px;
+  display: flex; flex-direction: column; align-items: center;
+  position: sticky; top: 20px; 
+}
+#afy-meta-app .afy-meta-thumb-wrap {
+  position: relative; width: 100%; height: auto; line-height: 0; 
+  margin-bottom: 16px; border-radius: 12px; overflow: hidden; 
+  border: 1px solid #e2e8f0; background: #f8fafc;
+}
+#afy-meta-app .afy-meta-thumb-wrap img { width: 100%; height: auto; display: block; border-radius: 12px; }
+#afy-meta-app .afy-meta-thumb-remove {
+  position: absolute; top: 8px; right: 8px; width: 28px; height: 28px;
+  border: none; border-radius: 50%; background: rgba(0,0,0,.55); color: #fff;
+  display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .18s;
+}
+#afy-meta-app .afy-meta-thumb-remove:hover { background: rgba(0,0,0,.85); }
+#afy-meta-app .afy-meta-image-info { text-align: center; width: 100%; }
+#afy-meta-app .afy-meta-filename-text {
+  font-size: .85rem; font-weight: 700; color: #1e293b;
+  margin: 0 0 6px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+#afy-meta-app .afy-meta-image-tip { font-size: .78rem; color: #94a3b8; margin: 0; line-height: 1.4; }
+
+/* ── Dynamic panels col ── */
+#afy-meta-app .afy-meta-dynamic-panel-col > .afy-meta-workspace { margin-bottom: 0; }
+
+/* ── Dropzone ───────────────────────────────────────────────────── */
+#afy-meta-app .afy-meta-dropzone {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:12px; padding:60px 24px; border:2px dashed #cbd5e1; border-radius:14px;
+  cursor:pointer; text-align:center; transition:all .2s;
+}
+#afy-meta-app .afy-meta-dropzone:hover,
+#afy-meta-app .afy-meta-dropzone.over  { border-color:#10b981; background:#ecfdf5; }
+#afy-meta-app .afy-meta-dz-icon  { color:#94a3b8; }
+#afy-meta-app .afy-meta-dz-title { font-size:1.05rem; font-weight:600; color:#1e293b; margin:0; }
+#afy-meta-app .afy-meta-dz-meta  { font-size:.82rem; color:#94a3b8; margin:0; }
+
+/* ── Form Inputs ────────────────────────────────────────────────── */
+#afy-meta-app .afy-meta-section-heading { font-size:1rem; font-weight:700; margin:0 0 10px; color:#1e293b; }
+#afy-meta-app .afy-meta-field { margin-bottom:15px; }
+#afy-meta-app .afy-meta-field-label { display:block; font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:#64748b; margin-bottom:4px; }
+#afy-meta-app .afy-meta-hint { font-size: .8rem; color: #94a3b8; margin: 0 0 8px 0; line-height: 1.4; }
+#afy-meta-app .afy-meta-input { width:100%; padding:10px 12px; font-size:.9rem; color:#0f172a; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; outline:none; }
+#afy-meta-app .afy-meta-input:focus { border-color:#10b981; box-shadow:0 0 0 3px rgba(16,185,129,.1); }
+
+/* ── Model Selection UI ─────────────────────────────────────────── */
+#afy-meta-app .afy-meta-model-group {
+    display: flex; gap: 10px; flex-wrap: wrap;
+}
+#afy-meta-app .afy-meta-model-card {
+    position: relative; display: flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 10px 18px; border: 1px solid #cbd5e1; border-radius: 8px;
+    background: #f8fafc; color: #475569; cursor: pointer; font-weight: 600; font-size: 14px;
+    transition: all 0.2s ease; flex: 1; min-width: 80px; text-align: center;
+}
+#afy-meta-app .afy-meta-model-card input[type="radio"] { display: none; }
+#afy-meta-app .afy-meta-model-card:hover:not(.locked) {
+    background: #e2e8f0; border-color: #94a3b8; color: #1e293b;
+}
+#afy-meta-app .afy-meta-model-card.active {
+    background: #ecfdf5; border-color: #10b981; color: #059669; 
+    box-shadow: 0 0 0 2px rgba(16,185,129,.2);
+}
+#afy-meta-app .afy-meta-model-card.locked {
+    opacity: 0.6; cursor: not-allowed; background: #f1f5f9; border-style: dashed;
+}
+#afy-meta-app .afy-meta-model-card.locked svg {
+    color: #94a3b8;
+}
+
+/* ── Buttons ───────────────────────────────────────── */
+#afy-meta-app .afy-meta-btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font-weight:600; border:none; border-radius:8px; cursor:pointer;
+  transition:all .2s ease;
+}
+#afy-meta-app .afy-meta-btn-full { width:100%; }
+#afy-meta-app .afy-meta-btn-lg   { padding:14px 28px; font-size:.95rem; }
+#afy-meta-app .afy-meta-btn-secondary { background:#fff; color:#475569; border:1px solid #d1d5db; padding: 10px 18px; font-size: .9rem; }
+#afy-meta-app .afy-meta-btn-secondary:hover { background:#f1f5f9; color: #1e293b; }
+#afy-meta-app .afy-meta-btn-primary {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #fff; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+}
+#afy-meta-app .afy-meta-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+}
+#afy-meta-app .afy-meta-btn:disabled { opacity:.6; cursor:not-allowed; transform:none !important; box-shadow:none !important; }
+
+/* ── ICON-ONLY COPY BUTTON ───────────────── */
+#afy-meta-app .afy-meta-copy-icon-btn {
+  background: transparent; border: none; padding: 6px; border-radius: 6px;
+  color: #64748b; cursor: pointer; transition: all .15s ease;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+#afy-meta-app .afy-meta-copy-icon-btn:hover {
+  background: #e2e8f0; color: #0f172a;
+}
+/* Warna hijau ketika dicopy (diberi kelas afy-copied via js) */
+#afy-meta-app .afy-meta-copy-icon-btn.afy-copied { color: #10b981; }
+
+/* ── Processing ─────────────────────────────────────────────────── */
+#afy-meta-app .afy-meta-spinner-ring { display:inline-block; width:50px; height:50px; border:4px solid #e2e8f0; border-top-color:#10b981; border-radius:50%; animation:afy-meta-spin 1s linear infinite; margin-bottom:15px; }
+#afy-meta-app .afy-meta-proc-title   { font-size:1.2rem; font-weight:700; margin:0 0 6px; }
+#afy-meta-app .afy-meta-proc-desc    { color:#64748b; margin:0; font-size:.9rem; }
+
+/* ── Result UI ──────────────────────────────────────────────────── */
+#afy-meta-app .afy-meta-result-header { display:flex; align-items:center; gap:12px; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 18px; }
+#afy-meta-app .afy-meta-check-icon { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; background:#d1fae5; color:#059669; border-radius:50%; }
+#afy-meta-app .afy-meta-result-title { font-size:1.2rem; font-weight:700; margin:0; }
+
+#afy-meta-app .afy-meta-blocks { display:flex; flex-direction:column; gap:12px; }
+#afy-meta-app .afy-meta-block { background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; overflow:hidden; }
+#afy-meta-app .afy-meta-block-header { display:flex; justify-content:space-between; align-items:center; padding:8px 14px; background:#f1f5f9; border-bottom:1px solid #e2e8f0; font-size:.82rem; color:#475569; }
+#afy-meta-app .afy-meta-block-header strong { color: #1e293b; }
+#afy-meta-app .afy-meta-result-textarea { width:100%; border:none; background:transparent; font-size:14px; color:#1e293b; outline:none; line-height: 1.5; font-family: monospace; }
+
+/* ── Premium Fallback Modal UI ───────────────────────────────────────── */
+#afy-meta-app .afy-meta-modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    z-index: 99999; display: flex; align-items: center; justify-content: center;
+    padding: 20px; animation: afy-meta-fade-in 0.3s ease-out forwards;
+}
+#afy-meta-app .afy-meta-modal-box {
+    position: relative; background: #ffffff; border-radius: 24px; width: 100%; max-width: 400px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); text-align: center;
+    transform: translateY(20px) scale(0.95); opacity: 0;
+    animation: afy-meta-modal-pop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    overflow: hidden;
+}
+@keyframes afy-meta-modal-pop { to { transform: translateY(0) scale(1); opacity: 1; } }
+#afy-meta-app .afy-meta-modal-glow {
+    position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, transparent 60%);
+    z-index: 0; pointer-events: none;
+}
+#afy-meta-app .afy-meta-modal-content { position: relative; z-index: 1; padding: 40px 30px 30px; }
+#afy-meta-app .afy-meta-modal-icon-wrap {
+    width: 64px; height: 64px; margin: 0 auto 20px;
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    color: #d97706; border-radius: 20px; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 15px -3px rgba(245, 158, 11, 0.2); transform: rotate(-5deg);
+}
+#afy-meta-app .afy-meta-modal-title { margin: 0 0 12px; font-size: 1.4rem; font-weight: 800; color: #0f172a; letter-spacing: -0.02em; }
+#afy-meta-app .afy-meta-modal-desc { margin: 0 0 24px; font-size: 0.95rem; color: #475569; line-height: 1.6; }
+#afy-meta-app .afy-meta-modal-offer { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 28px; }
+#afy-meta-app .afy-offer-text { font-size: 0.82rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+#afy-meta-app .afy-meta-modal-offer strong { display: block; font-size: 1.3rem; color: #10b981; margin-top: 6px; font-weight: 800; }
+#afy-meta-app .afy-meta-modal-actions { display: flex; gap: 12px; }
+#afy-meta-app .afy-meta-modal-actions button { flex: 1; padding: 12px 0; font-size: 0.95rem; border-radius: 10px; }
+
+/* ── Tabs & Form Styles ─────────────────────────── */
+#afy-meta-app .afy-meta-tabs-wrap {
+    display: flex; gap: 8px; justify-content: center; margin-bottom: 20px;
+    background: #f1f5f9; padding: 6px; border-radius: 12px; display: inline-flex; margin: 0 auto 24px;
+}
+#afy-meta-app .afy-meta-tab-btn {
+    background: transparent; border: none; padding: 10px 20px; border-radius: 8px;
+    font-size: 0.95rem; font-weight: 600; color: #64748b; cursor: pointer;
+    display: flex; align-items: center; gap: 8px; transition: all 0.2s;
+}
+#afy-meta-app .afy-meta-tab-btn:hover { color: #1e293b; }
+#afy-meta-app .afy-meta-tab-btn.active { background: #fff; color: #10b981; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+
+/* Fix Select Chevron Base64 (Aman 100%) */
+#afy-meta-fallback-select {
+    appearance: none; -webkit-appearance: none; -moz-appearance: none;
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNicgaGVpZ2h0PScxNicgdmlld0JveD0nMCAwIDI0IDI0JyBmaWxsPSdub25lJyBzdHJva2U9JyMxMGI5ODEnIHN0cm9rZS13aWR0aD0nMycgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBzdHJva2UtbGluZWpvaW49J3JvdW5kJz48cG9seWxpbmUgcG9pbnRzPSc2IDkgMTIgMTUgMTggOScvPjwvc3ZnPg==");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
+    padding: 14px 40px 14px 18px;
+    border: 2px solid #cbd5e1;
+    border-radius: 12px;
+    color: #1e293b;
+    font-size: 1rem;
+    font-weight: 700;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+}
+#afy-meta-fallback-select:focus { border-color: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15); }
+
+/* ── Strategy Toggle UI ─────────────────────────── */
+#afy-meta-app .afy-meta-strategy-toggle {
+    display: flex; background: #f1f5f9; padding: 5px; border-radius: 12px; border: 1px solid #e2e8f0;
+}
+#afy-meta-app .afy-meta-strat-label {
+    flex: 1; cursor: pointer; margin: 0; position: relative;
+}
+#afy-meta-app .afy-meta-strat-label input {
+    position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0;
+}
+#afy-meta-app .afy-meta-strat-btn {
+    display: block; text-align: center; padding: 10px; font-size: 0.85rem; font-weight: 700;
+    color: #64748b; border-radius: 8px; transition: all 0.2s ease; z-index: 1; position: relative;
+}
+#afy-meta-app .afy-meta-strat-label input:checked ~ .afy-meta-strat-btn {
+    background: #ffffff; color: #10b981; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* ── Emerald Range Slider UI ─────────────────────────── */
+@keyframes afy-meta-fade-down { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+#afy-meta-app .afy-meta-slider-container { position: relative; width: 100%; padding: 0 10px; box-sizing: border-box; }
+#afy-meta-app .afy-meta-range {
+    -webkit-appearance: none; width: 100%; background: transparent; margin: 10px 0;
+}
+#afy-meta-app .afy-meta-range:focus { outline: none; }
+#afy-meta-app .afy-meta-range::-webkit-slider-runnable-track {
+    width: 100%; height: 6px; cursor: pointer; background: #cbd5e1; border-radius: 10px;
+}
+#afy-meta-app .afy-meta-range::-webkit-slider-thumb {
+    height: 20px; width: 20px; border-radius: 50%; background: #10b981; cursor: pointer;
+    -webkit-appearance: none; margin-top: -7px; box-shadow: 0 2px 5px rgba(16, 185, 129, 0.4);
+    border: 3px solid #ffffff; transition: transform 0.1s;
+}
+#afy-meta-app .afy-meta-range::-webkit-slider-thumb:hover { transform: scale(1.15); }
+#afy-meta-app .afy-meta-range::-moz-range-track { width: 100%; height: 6px; cursor: pointer; background: #cbd5e1; border-radius: 10px; }
+#afy-meta-app .afy-meta-range::-moz-range-thumb {
+    height: 20px; width: 20px; border-radius: 50%; background: #10b981; cursor: pointer; border: 3px solid #ffffff;
+}
+#afy-meta-app .afy-meta-slider-ticks {
+    display: flex; justify-content: space-between; padding: 0 5px; margin-top: 8px; font-size: 11px; font-weight: 700; color: #94a3b8;
+}
+#afy-meta-app .afy-locked-tick { color: #cbd5e1; display:flex; align-items:center; }
+
+/* ── Sticky Left Column & Custom Scrollbar ───────────────── */
+#afy-meta-app .afy-meta-sticky-col {
+    position: sticky;
+    top: 20px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    /* Menyembunyikan scrollbar tapi tetap bisa di-scroll */
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+}
+#afy-meta-app .afy-meta-sticky-col::-webkit-scrollbar { width: 6px; }
+#afy-meta-app .afy-meta-sticky-col::-webkit-scrollbar-track { background: transparent; }
+#afy-meta-app .afy-meta-sticky-col::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 10px; }
+
+/* ── Lightbox Zoom Image ─────────────────────────────────── */
+.afy-meta-ref-img-zoom {
+    cursor: zoom-in; transition: transform 0.2s;
+}
+.afy-meta-ref-img-zoom:hover {
+    transform: scale(1.02);
+}
