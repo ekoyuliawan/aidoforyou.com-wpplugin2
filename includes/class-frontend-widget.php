@@ -29,19 +29,27 @@ class AIDOFORYOU_Metadata_Frontend_Widget {
     public function handle_image_proxy( WP_REST_Request $request ) {
         $url = esc_url_raw( $request->get_param( 'url' ) );
         
-        // Whitelist Security: Hanya izinkan domain FTCDN milik Adobe
-        if ( strpos( $url, 'ftcdn.net' ) === false ) {
-            return new WP_Error( 'forbidden', 'Unauthorized domain.', array( 'status' => 403 ) );
+        // --- SECURITY FIX: Strict Host Validation to prevent SSRF ---
+        $parsed_url = wp_parse_url( $url );
+        $host       = isset( $parsed_url['host'] ) ? strtolower( $parsed_url['host'] ) : '';
+
+        // Allow only exact matches for ftcdn.net or its valid subdomains
+        $allowed_domain = 'ftcdn.net';
+        $is_valid_host  = ( $host === $allowed_domain || substr( $host, -strlen( '.' . $allowed_domain ) ) === '.' . $allowed_domain );
+
+        if ( ! $is_valid_host ) {
+            return new WP_Error( 'forbidden', 'Unauthorized domain. Proxy strictly allows only Adobe Stock assets.', array( 'status' => 403 ) );
         }
+        // ------------------------------------------------------------
 
         $res = wp_remote_get( $url, array( 'timeout' => 10 ) );
         if ( is_wp_error( $res ) ) return $res;
 
         $type = wp_remote_retrieve_header( $res, 'content-type' );
         header( 'Content-Type: ' . ( $type ? $type : 'image/jpeg' ) );
-        header( 'Cache-Control: public, max-age=86400' ); // Cache 1 hari
+        header( 'Cache-Control: public, max-age=86400' ); // Cache for 1 day
         echo wp_remote_retrieve_body( $res );
-        exit; // Hentikan eksekusi WP untuk stream murni
+        exit; // Terminate WP execution for pure streaming
     }
 
     public function register_assets(): void {

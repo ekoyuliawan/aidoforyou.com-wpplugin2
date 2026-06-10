@@ -1,9 +1,15 @@
-/* AIdoforyou Metadata — v1.0.3 (Clean Sticky Image & Minimalist Copy Icons) */
+/* AIdoforyou Metadata — v1.0.5 (Clean Sticky Image, 1-Col References, & Adaptive Mobile) */
+/* Commit Notes: 
+ * - Reverted to base v1.0.3 design as requested.
+ * - Enforced 1-column vertical stacking for market references for Adsense readiness.
+ * - Added comprehensive @media queries for mobile/tablet responsive behavior.
+ */
+
 #afy-meta-app, #afy-meta-app * { box-sizing: border-box; }
 #afy-meta-app {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  max-width: 900px; margin: 0 auto;
-  color: #0f172a; line-height: 1.5; font-size: 15px;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    max-width: 900px; margin: 0 auto;
+    color: #0f172a; line-height: 1.5; font-size: 15px;
 }
 @keyframes afy-meta-fade-up { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
 @keyframes afy-meta-spin    { to { transform: rotate(360deg); } }
@@ -14,69 +20,78 @@
 #afy-meta-app .afy-meta-brand  { display:flex; align-items:center; gap:8px; font-size:1.1rem; font-weight:700; color: #1e293b; }
 #afy-meta-app .afy-meta-brand svg { color:#10b981; } 
 #afy-meta-app .afy-meta-credits-pill {
-  display:inline-flex; align-items:center; gap:6px;
-  background:#fff; border:1px solid #e2e8f0; border-radius:999px;
-  padding:5px 14px; font-size:.82rem; font-weight:600; color:#475569;
+    display:inline-flex; align-items:center; gap:6px;
+    background:#fff; border:1px solid #e2e8f0; border-radius:999px;
+    padding:5px 14px; font-size:.82rem; font-weight:600; color:#475569;
 }
 #afy-meta-app .afy-meta-credits-pill svg { color:#f59e0b; }
 
 /* ── Alert ──────────────────────────────────────────────────────── */
 #afy-meta-app .afy-meta-alert {
-  display:flex; align-items:flex-start; gap:10px;
-  background:#fef2f2; color:#b91c1c; border:1px solid #fecaca;
-  border-radius:10px; padding:14px 16px; margin-bottom:18px;
-  font-size:.9rem; font-weight:500; animation:afy-meta-fade-up .25s ease;
+    display:flex; align-items:flex-start; gap:10px;
+    background:#fef2f2; color:#b91c1c; border:1px solid #fecaca;
+    border-radius:10px; padding:14px 16px; margin-bottom:18px;
+    font-size:.9rem; font-weight:500; animation:afy-meta-fade-up .25s ease;
 }
 
 /* ── Workspace card base ─────────────────────────────────────────────── */
 #afy-meta-app .afy-meta-workspace {
-  background:#fff; border:1px solid #e2e8f0; border-radius:16px;
-  padding:36px; box-shadow:0 1px 15px rgba(0,0,0,.04); min-height:280px;
-  margin-bottom: 20px;
+    background:#fff; border:1px solid #e2e8f0; border-radius:16px;
+    padding:36px; box-shadow:0 1px 15px rgba(0,0,0,.04); min-height:280px;
+    margin-bottom: 20px;
 }
 
 /* ── MAIN GRID (Persistent Image Layout) ─────────────────────── */
 #afy-meta-app .afy-meta-main-grid {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 24px;
-  align-items: start;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    align-items: start;
 }
-@media (max-width:768px) { #afy-meta-app .afy-meta-main-grid { grid-template-columns: 1fr; } }
 
 /* ── KIRI: Persistent Image Col (CLEAN) ────────────────────────────────── */
 #afy-meta-app .afy-meta-persistent-image-col {
-  padding: 24px;
-  display: flex; flex-direction: column; align-items: center;
-  position: sticky; top: 20px; 
+    padding: 24px;
+    display: flex; flex-direction: column; align-items: center;
+    position: sticky; top: 20px; 
 }
 #afy-meta-app .afy-meta-thumb-wrap {
-  position: relative; width: 100%; height: auto; line-height: 0; 
-  margin-bottom: 16px; border-radius: 12px; overflow: hidden; 
-  border: 1px solid #e2e8f0; background: #f8fafc;
+    position: relative; width: 100%; height: auto; line-height: 0; 
+    margin-bottom: 16px; border-radius: 12px; overflow: hidden; 
+    border: 1px solid #e2e8f0; background: #f8fafc;
+    flex-shrink: 0 !important; /* FIXED: Prevents grid from crushing the preview */
 }
 #afy-meta-app .afy-meta-thumb-wrap img { width: 100%; height: auto; display: block; border-radius: 12px; }
 #afy-meta-app .afy-meta-thumb-remove {
-  position: absolute; top: 8px; right: 8px; width: 28px; height: 28px;
-  border: none; border-radius: 50%; background: rgba(0,0,0,.55); color: #fff;
-  display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .18s;
+    position: absolute; top: 8px; right: 8px; width: 28px; height: 28px;
+    border: none; border-radius: 50%; background: rgba(0,0,0,.55); color: #fff;
+    display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .18s;
+    padding: 0 !important; flex-shrink: 0 !important; /* FIXED: Prevents oval distortion */
 }
 #afy-meta-app .afy-meta-thumb-remove:hover { background: rgba(0,0,0,.85); }
 #afy-meta-app .afy-meta-image-info { text-align: center; width: 100%; }
 #afy-meta-app .afy-meta-filename-text {
-  font-size: .85rem; font-weight: 700; color: #1e293b;
-  margin: 0 0 6px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    font-size: .85rem; font-weight: 700; color: #1e293b;
+    margin: 0 0 6px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 #afy-meta-app .afy-meta-image-tip { font-size: .78rem; color: #94a3b8; margin: 0; line-height: 1.4; }
+
+/* ── Market References Grid (1-Column Vertical) ─────────────────── */
+#afy-meta-app .afy-meta-market-references-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Memberi jarak rapi antar gambar Adobe */
+    width: 100%;
+}
 
 /* ── Dynamic panels col ── */
 #afy-meta-app .afy-meta-dynamic-panel-col > .afy-meta-workspace { margin-bottom: 0; }
 
 /* ── Dropzone ───────────────────────────────────────────────────── */
 #afy-meta-app .afy-meta-dropzone {
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  gap:12px; padding:60px 24px; border:2px dashed #cbd5e1; border-radius:14px;
-  cursor:pointer; text-align:center; transition:all .2s;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:12px; padding:60px 24px; border:2px dashed #cbd5e1; border-radius:14px;
+    cursor:pointer; text-align:center; transition:all .2s;
 }
 #afy-meta-app .afy-meta-dropzone:hover,
 #afy-meta-app .afy-meta-dropzone.over  { border-color:#10b981; background:#ecfdf5; }
@@ -92,26 +107,35 @@
 #afy-meta-app .afy-meta-input { width:100%; padding:10px 12px; font-size:.9rem; color:#0f172a; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; outline:none; }
 #afy-meta-app .afy-meta-input:focus { border-color:#10b981; box-shadow:0 0 0 3px rgba(16,185,129,.1); }
 
-/* ── Model Selection UI ─────────────────────────────────────────── */
+/* ── Modern Model Selection UI ─────────────────────────────────────────── */
 #afy-meta-app .afy-meta-model-group {
-    display: flex; gap: 10px; flex-wrap: wrap;
+    display: flex; gap: 14px; flex-wrap: wrap;
 }
 #afy-meta-app .afy-meta-model-card {
     position: relative; display: flex; align-items: center; justify-content: center; gap: 6px;
-    padding: 10px 18px; border: 1px solid #cbd5e1; border-radius: 8px;
-    background: #f8fafc; color: #475569; cursor: pointer; font-weight: 600; font-size: 14px;
-    transition: all 0.2s ease; flex: 1; min-width: 80px; text-align: center;
+    padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px;
+    background: #ffffff; color: #64748b; cursor: pointer; font-weight: 700; font-size: 14px;
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); flex: 1; min-width: 90px; text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 }
 #afy-meta-app .afy-meta-model-card input[type="radio"] { display: none; }
 #afy-meta-app .afy-meta-model-card:hover:not(.locked) {
-    background: #e2e8f0; border-color: #94a3b8; color: #1e293b;
+    border-color: #cbd5e1; transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.06); color: #1e293b;
 }
 #afy-meta-app .afy-meta-model-card.active {
-    background: #ecfdf5; border-color: #10b981; color: #059669; 
-    box-shadow: 0 0 0 2px rgba(16,185,129,.2);
+    background: #f0fdf4; border-color: #10b981; color: #047857; 
+    box-shadow: 0 4px 12px rgba(16,185,129,0.15); transform: translateY(-2px);
+}
+/* Menambahkan Badge Ceklis Elegan di Pojok Kanan Atas saat Aktif */
+#afy-meta-app .afy-meta-model-card.active::after {
+    content: ''; position: absolute; top: -6px; right: -6px; width: 22px; height: 22px;
+    background-color: #10b981; border-radius: 50%; border: 3px solid #ffffff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    background-size: 11px; background-position: center; background-repeat: no-repeat;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 #afy-meta-app .afy-meta-model-card.locked {
-    opacity: 0.6; cursor: not-allowed; background: #f1f5f9; border-style: dashed;
+    opacity: 0.6; cursor: not-allowed; background: #f8fafc; border-style: dashed; transform: none; box-shadow: none;
 }
 #afy-meta-app .afy-meta-model-card.locked svg {
     color: #94a3b8;
@@ -119,32 +143,32 @@
 
 /* ── Buttons ───────────────────────────────────────── */
 #afy-meta-app .afy-meta-btn {
-  display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  font-weight:600; border:none; border-radius:8px; cursor:pointer;
-  transition:all .2s ease;
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    font-weight:600; border:none; border-radius:8px; cursor:pointer;
+    transition:all .2s ease;
 }
 #afy-meta-app .afy-meta-btn-full { width:100%; }
 #afy-meta-app .afy-meta-btn-lg   { padding:14px 28px; font-size:.95rem; }
 #afy-meta-app .afy-meta-btn-secondary { background:#fff; color:#475569; border:1px solid #d1d5db; padding: 10px 18px; font-size: .9rem; }
 #afy-meta-app .afy-meta-btn-secondary:hover { background:#f1f5f9; color: #1e293b; }
 #afy-meta-app .afy-meta-btn-primary {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: #fff; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #fff; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
 }
 #afy-meta-app .afy-meta-btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
 }
 #afy-meta-app .afy-meta-btn:disabled { opacity:.6; cursor:not-allowed; transform:none !important; box-shadow:none !important; }
 
 /* ── ICON-ONLY COPY BUTTON ───────────────── */
 #afy-meta-app .afy-meta-copy-icon-btn {
-  background: transparent; border: none; padding: 6px; border-radius: 6px;
-  color: #64748b; cursor: pointer; transition: all .15s ease;
-  display: inline-flex; align-items: center; justify-content: center;
+    background: transparent; border: none; padding: 6px; border-radius: 6px;
+    color: #64748b; cursor: pointer; transition: all .15s ease;
+    display: inline-flex; align-items: center; justify-content: center;
 }
 #afy-meta-app .afy-meta-copy-icon-btn:hover {
-  background: #e2e8f0; color: #0f172a;
+    background: #e2e8f0; color: #0f172a;
 }
 /* Warna hijau ketika dicopy (diberi kelas afy-copied via js) */
 #afy-meta-app .afy-meta-copy-icon-btn.afy-copied { color: #10b981; }
@@ -234,6 +258,9 @@
 }
 #afy-meta-fallback-select:focus { border-color: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15); }
 
+/* ── Class Helper JS ─────────────────────────── */
+.afy-meta-hidden { display: none !important; }
+
 /* ── Strategy Toggle UI ─────────────────────────── */
 #afy-meta-app .afy-meta-strategy-toggle {
     display: flex; background: #f1f5f9; padding: 5px; border-radius: 12px; border: 1px solid #e2e8f0;
@@ -248,48 +275,45 @@
     display: block; text-align: center; padding: 10px; font-size: 0.85rem; font-weight: 700;
     color: #64748b; border-radius: 8px; transition: all 0.2s ease; z-index: 1; position: relative;
 }
+/* FIX: Efek hover interaktif bergaya modern */
+#afy-meta-app .afy-meta-strat-label:hover .afy-meta-strat-btn {
+    background: #e2e8f0; color: #1e293b;
+}
 #afy-meta-app .afy-meta-strat-label input:checked ~ .afy-meta-strat-btn {
     background: #ffffff; color: #10b981; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
+#afy-meta-app .afy-meta-strat-label input:checked:hover ~ .afy-meta-strat-btn {
+    background: #ffffff; /* Mempertahankan warna putih saat menu aktif di-hover */
+}
 
-/* ── Emerald Range Slider UI ─────────────────────────── */
+/* ── Bolder Emerald Range Slider UI ─────────────────────────── */
 @keyframes afy-meta-fade-down { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 #afy-meta-app .afy-meta-slider-container { position: relative; width: 100%; padding: 0 10px; box-sizing: border-box; }
 #afy-meta-app .afy-meta-range {
-    -webkit-appearance: none; width: 100%; background: transparent; margin: 10px 0;
+    -webkit-appearance: none; width: 100%; background: transparent; margin: 12px 0; cursor: pointer;
 }
 #afy-meta-app .afy-meta-range:focus { outline: none; }
 #afy-meta-app .afy-meta-range::-webkit-slider-runnable-track {
-    width: 100%; height: 6px; cursor: pointer; background: #cbd5e1; border-radius: 10px;
+    width: 100%; height: 10px; cursor: pointer; background: #cbd5e1; border-radius: 10px; 
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
 }
 #afy-meta-app .afy-meta-range::-webkit-slider-thumb {
-    height: 20px; width: 20px; border-radius: 50%; background: #10b981; cursor: pointer;
-    -webkit-appearance: none; margin-top: -7px; box-shadow: 0 2px 5px rgba(16, 185, 129, 0.4);
-    border: 3px solid #ffffff; transition: transform 0.1s;
+    height: 24px; width: 24px; border-radius: 50%; background: #10b981; cursor: pointer;
+    -webkit-appearance: none; margin-top: -7px; box-shadow: 0 2px 6px rgba(16, 185, 129, 0.4);
+    border: 4px solid #ffffff; transition: transform 0.1s;
 }
-#afy-meta-app .afy-meta-range::-webkit-slider-thumb:hover { transform: scale(1.15); }
-#afy-meta-app .afy-meta-range::-moz-range-track { width: 100%; height: 6px; cursor: pointer; background: #cbd5e1; border-radius: 10px; }
+#afy-meta-app .afy-meta-range::-webkit-slider-thumb:hover { transform: scale(1.2); }
+#afy-meta-app .afy-meta-range::-moz-range-track { 
+    width: 100%; height: 10px; cursor: pointer; background: #cbd5e1; border-radius: 10px; 
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); 
+}
 #afy-meta-app .afy-meta-range::-moz-range-thumb {
-    height: 20px; width: 20px; border-radius: 50%; background: #10b981; cursor: pointer; border: 3px solid #ffffff;
+    height: 24px; width: 24px; border-radius: 50%; background: #10b981; cursor: pointer; border: 4px solid #ffffff;
 }
 #afy-meta-app .afy-meta-slider-ticks {
-    display: flex; justify-content: space-between; padding: 0 5px; margin-top: 8px; font-size: 11px; font-weight: 700; color: #94a3b8;
+    display: flex; justify-content: space-between; padding: 0 5px; margin-top: 8px; font-size: 12px; font-weight: 700; color: #94a3b8;
 }
 #afy-meta-app .afy-locked-tick { color: #cbd5e1; display:flex; align-items:center; }
-
-/* ── Sticky Left Column & Custom Scrollbar ───────────────── */
-#afy-meta-app .afy-meta-sticky-col {
-    position: sticky;
-    top: 20px;
-    max-height: calc(100vh - 40px);
-    overflow-y: auto;
-    /* Menyembunyikan scrollbar tapi tetap bisa di-scroll */
-    scrollbar-width: thin;
-    scrollbar-color: #cbd5e1 transparent;
-}
-#afy-meta-app .afy-meta-sticky-col::-webkit-scrollbar { width: 6px; }
-#afy-meta-app .afy-meta-sticky-col::-webkit-scrollbar-track { background: transparent; }
-#afy-meta-app .afy-meta-sticky-col::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 10px; }
 
 /* ── Lightbox Zoom Image ─────────────────────────────────── */
 .afy-meta-ref-img-zoom {
@@ -297,4 +321,60 @@
 }
 .afy-meta-ref-img-zoom:hover {
     transform: scale(1.02);
+}
+
+/* ── Responsive & Adaptive Design (Mobile / Tablet) ── */
+@media (max-width: 768px) {
+    /* Collapse grid into single column */
+    #afy-meta-app .afy-meta-main-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    /* Disable sticky behavior so it scrolls naturally */
+    #afy-meta-app .afy-meta-persistent-image-col {
+        position: relative;
+        top: 0;
+        padding: 20px;
+    }
+
+    /* Reduce padding to maximize mobile screen space */
+    #afy-meta-app .afy-meta-workspace {
+        padding: 24px 20px;
+    }
+
+    /* Stack topbar items vertically */
+    #afy-meta-app .afy-meta-topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    /* Make tabs full width */
+    #afy-meta-app .afy-meta-tabs-wrap {
+        width: 100%;
+        flex-direction: row;
+    }
+    
+    #afy-meta-app .afy-meta-tab-btn {
+        flex: 1;
+        justify-content: center;
+    }
+
+    /* Adjust strategy toggles for very tight spaces */
+    #afy-meta-app .afy-meta-strategy-toggle {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Even tighter padding for very small mobile screens */
+    #afy-meta-app .afy-meta-workspace {
+        padding: 16px 12px;
+    }
+    
+    /* Stack model cards vertically on tiny screens */
+    #afy-meta-app .afy-meta-model-card {
+        min-width: 100%;
+    }
 }

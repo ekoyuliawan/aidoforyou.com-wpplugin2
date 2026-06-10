@@ -3,6 +3,10 @@
  * Frontend App HTML Template.
  *
  * @package AIdoforyouMetadata
+ * * Commit Notes:
+ * - Changed "By Text" to "By Keyword".
+ * - Updated placeholder and description for Keyword mode.
+ * - Added 'afy-image-only-block' class to fields that should be hidden in Keyword mode.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -47,7 +51,7 @@ $cost   = (int) get_option('afy_meta_credit_cost', 2);
             </button>
             <button type="button" class="afy-meta-tab-btn" data-tab="text">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                By Text
+                By Keyword
             </button>
         </div>
 
@@ -64,21 +68,18 @@ $cost   = (int) get_option('afy_meta_credit_cost', 2);
         </div>
 
         <div id="afy-meta-area-text" class="afy-meta-tab-content" style="display:none;">
-            <p style="text-align:center; color:#64748b; font-size:14px; margin-bottom:15px;">Paste a concept, keyword idea, or prompt to generate metadata.</p>
-            <textarea id="afy-meta-text-input" class="afy-meta-input" rows="6" placeholder="e.g. A futuristic cyberpunk city at night with neon lights and flying cars..."></textarea>
-            <button type="button" id="afy-meta-text-submit-btn" class="afy-meta-btn afy-meta-btn-primary afy-meta-btn-full" style="margin-top:15px; padding:12px;">
+            <p style="text-align:center; color:#64748b; font-size:14px; margin-bottom:15px;">Paste a specific keyword phrase (1 to 5 words) to find market references and generate variations.</p>
+            <textarea id="afy-meta-text-input" class="afy-meta-input" rows="3" placeholder="e.g. happy family outdoors sunset" style="font-size: 1.15rem; padding: 16px;"></textarea>
+            <button type="button" id="afy-meta-text-submit-btn" class="afy-meta-btn afy-meta-btn-primary afy-meta-btn-full" style="margin-top:15px; padding:12px 24px; font-size:1rem; font-weight:600;">
                 Proceed
             </button>
         </div>
     </div>
 
-    <!-- INTERNAL WORKSPACE GRID -->
     <div id="afy-meta-state-workspace" class="afy-meta-workspace" style="display:none; padding: 0; border:none; background:transparent; box-shadow:none;">
         <div class="afy-meta-main-grid">
             
-            <!-- KOLOM KIRI (Smart Sticky) -->
             <div class="afy-meta-persistent-image-col afy-meta-workspace afy-meta-fade-in afy-meta-sticky-col">
-                <!-- Preview Full untuk Gambar -->
                 <div id="afy-meta-preview-image-wrap" class="afy-meta-thumb-wrap">
                     <img id="afy-meta-preview-img" src="" alt="Preview" />
                     <button type="button" class="afy-meta-thumb-remove afy-meta-cancel-btn" title="Remove">
@@ -86,13 +87,12 @@ $cost   = (int) get_option('afy_meta_credit_cost', 2);
                     </button>
                 </div>
                 
-                <!-- Preview Box untuk Teks -->
                 <div id="afy-meta-preview-text-wrap" class="afy-meta-thumb-wrap" style="display:none; padding:20px; background:#f1f5f9; text-align:left;">
                     <div style="color:#10b981; margin-bottom:10px;">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                     </div>
-                    <p id="afy-meta-preview-text-snippet" style="font-size:13px; color:#475569; font-style:italic; line-height:1.5; margin:0 0 10px 0; overflow:hidden; display:-webkit-box; -webkit-line-clamp:5; -webkit-box-orient:vertical;"></p>
-                    <button type="button" class="afy-meta-btn afy-meta-btn-secondary afy-meta-cancel-btn" style="width:100%; padding:6px; font-size:12px;">Edit Text</button>
+                    <p id="afy-meta-preview-text-snippet" style="font-size:15px; font-weight:700; color:#1e293b; line-height:1.5; margin:0 0 10px 0;"></p>
+                    <button type="button" class="afy-meta-btn afy-meta-btn-secondary afy-meta-cancel-btn" style="width:100%; padding:6px; font-size:12px;">Edit Keyword</button>
                 </div>
 
                 <div class="afy-meta-image-info">
@@ -100,19 +100,15 @@ $cost   = (int) get_option('afy_meta_credit_cost', 2);
                     <p class="afy-meta-image-tip"><?php esc_html_e( 'AI will expand this into Adobe Stock metadata.', 'aidoforyou-metadata' ); ?></p>
                 </div>
 
-                <!-- NEW: Reference Image Grid (Kiri & Vertikal) -->
                 <div id="afy-meta-market-references-wrap" style="display:none; margin-top:20px; padding-top:20px; border-top:1px dashed #cbd5e1;">
                     <p style="font-size:11px; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em; margin:0 0 5px 0;">Market References</p>
                     <p id="afy-meta-search-query-text" style="font-size:13px; color:#10b981; font-weight:600; margin:0 0 12px 0; word-break:break-all;"></p>
                     
-                    <!-- 1 Kolom Vertikal Grid -->
-                    <div id="afy-meta-market-references-grid" style="display:grid; grid-template-columns: 1fr; gap:10px;">
-                        <!-- Images injected via JS -->
-                    </div>
+                    <div id="afy-meta-market-references-grid" class="afy-meta-market-references-grid">
+                        </div>
                 </div>
             </div>
             
-            <!-- KOLOM KANAN -->
             <div class="afy-meta-dynamic-panel-col">
                 <div id="afy-meta-panel-settings" class="afy-meta-workspace afy-meta-fade-in">
                     <h3 class="afy-meta-section-heading" style="border:none; margin-bottom:15px;"><?php esc_html_e( 'Extraction Settings', 'aidoforyou-metadata' ); ?></h3>
@@ -122,7 +118,6 @@ $cost   = (int) get_option('afy_meta_credit_cost', 2);
                         <div id="afy-meta-model-selection" class="afy-meta-model-group"></div>
                     </div>
 
-                    <!-- STRATEGY SELECTION -->
                     <div class="afy-meta-field" style="margin-top:24px;">
                         <label class="afy-meta-field-label" style="display:flex; justify-content:space-between; align-items:center;">
                             Variation Strategy
@@ -141,7 +136,6 @@ $cost   = (int) get_option('afy_meta_credit_cost', 2);
                         </div>
                     </div>
 
-                    <!-- MARKET-PROVEN SLIDER -->
                     <div id="afy-meta-market-slider-wrap" class="afy-meta-field" style="margin-top:12px; display:none; background:#f8fafc; padding:16px; border-radius:12px; border:1px solid #e2e8f0; animation: afy-meta-fade-down 0.2s ease-out;">
                         <label class="afy-meta-field-label" style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:13px;">
                             <span>Target Variations</span>
@@ -180,10 +174,10 @@ $cost   = (int) get_option('afy_meta_credit_cost', 2);
                 <div id="afy-meta-panel-processing" class="afy-meta-workspace afy-meta-proc-wrap afy-meta-fade-in" style="display:none; text-align:center; padding: 80px 36px;">
                     <div class="afy-meta-spinner-ring"></div>
                     <h3 class="afy-meta-proc-title" style="display:flex; align-items:center; justify-content:center; gap:8px;">
-                        <?php esc_html_e( 'Analyzing Pixels...', 'aidoforyou-metadata' ); ?>
+                        <?php esc_html_e( 'Analyzing...', 'aidoforyou-metadata' ); ?>
                         <span id="afy-meta-server-indicator" style="font-size: 12px; font-weight: 700; color: #10b981; background: #ecfdf5; padding: 3px 10px; border-radius: 12px; border: 1px solid #a7f3d0;">Server 1</span>
                     </h3>
-                    <p class="afy-meta-proc-desc" style="line-height: 1.5; margin-top:10px;"><?php esc_html_e( 'AI is generating perfectly formatted Adobe Stock metadata.', 'aidoforyou-metadata' ); ?></p>
+                    <p class="afy-meta-proc-desc" style="line-height: 1.5; margin-top:10px;"><?php esc_html_e( 'AI is generating perfectly formatted data.', 'aidoforyou-metadata' ); ?></p>
                 </div>
 
                 <div id="afy-meta-panel-result" class="afy-meta-workspace afy-meta-fade-in" style="display:none; padding: 24px;">
@@ -192,7 +186,7 @@ $cost   = (int) get_option('afy_meta_credit_cost', 2);
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                         </div>
                         <div>
-                            <h3 class="afy-meta-result-title"><?php esc_html_e( 'Metadata Generated!', 'aidoforyou-metadata' ); ?></h3>
+                            <h3 class="afy-meta-result-title"><?php esc_html_e( 'Generation Complete!', 'aidoforyou-metadata' ); ?></h3>
                             <p id="afy-meta-generation-info" style="font-size: 12px; color: #64748b; margin: 4px 0 0 0; font-weight: 500;"></p>
                         </div>
                         <div style="margin-left:auto;">
@@ -204,7 +198,7 @@ $cost   = (int) get_option('afy_meta_credit_cost', 2);
                     </div>
 
                     <div class="afy-meta-blocks">
-                        <div class="afy-meta-block">
+                        <div class="afy-meta-block afy-image-only-block">
                             <div class="afy-meta-block-header">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #64748b;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
                                 <strong>Reverse Prompt</strong>
@@ -231,7 +225,6 @@ $cost   = (int) get_option('afy_meta_credit_cost', 2);
                             <div class="afy-meta-block-header">
                                 <div>
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #64748b; margin-right:4px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                                    <!-- ID ditambahkan agar label bisa diubah JS (Dynamic vs Market) -->
                                     <strong id="afy-meta-elasticity-label">Commercial Elasticity</strong>
                                 </div>
                             </div>
@@ -240,8 +233,8 @@ $cost   = (int) get_option('afy_meta_credit_cost', 2);
                             </div>
                         </div>
                         
-                        <div style="display:flex; gap:12px;">
-                            <div class="afy-meta-block" style="flex:1;">
+                        <div style="display:flex; gap:12px; flex-wrap:wrap;" class="afy-image-only-block">
+                            <div class="afy-meta-block" style="flex:1; min-width: 150px;">
                                 <div class="afy-meta-block-header">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #64748b;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
                                     <strong>Media Type</strong>
@@ -252,7 +245,7 @@ $cost   = (int) get_option('afy_meta_credit_cost', 2);
                                 </div>
                             </div>
 
-                            <div class="afy-meta-block" style="flex:1;">
+                            <div class="afy-meta-block" style="flex:1; min-width: 150px;">
                                 <div class="afy-meta-block-header">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #64748b;"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                                     <strong>Category</strong>
@@ -264,7 +257,7 @@ $cost   = (int) get_option('afy_meta_credit_cost', 2);
                             </div>
                         </div>
 
-                        <div class="afy-meta-block">
+                        <div class="afy-meta-block afy-image-only-block">
                             <div class="afy-meta-block-header">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #64748b;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="8" y2="18"></line><line x1="16" y1="14" x2="8" y2="14"></line></svg>
                                 <strong>File Name</strong>
@@ -275,7 +268,7 @@ $cost   = (int) get_option('afy_meta_credit_cost', 2);
                             </div>
                         </div>
 
-                        <div class="afy-meta-block">
+                        <div class="afy-meta-block afy-image-only-block">
                             <div class="afy-meta-block-header">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #64748b;"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                                 <strong>Title</strong>
@@ -286,7 +279,7 @@ $cost   = (int) get_option('afy_meta_credit_cost', 2);
                             </div>
                         </div>
 
-                        <div class="afy-meta-block">
+                        <div class="afy-meta-block afy-image-only-block">
                             <div class="afy-meta-block-header">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #64748b;"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
                                 <strong>Keywords</strong>
@@ -306,7 +299,6 @@ $cost   = (int) get_option('afy_meta_credit_cost', 2);
 
     </div>
     
-    <!-- LIGHTBOX OVERLAY UNTUK ZOOM GAMBAR -->
     <div id="afy-meta-lightbox" class="afy-meta-modal-overlay" style="display:none; z-index:999999; cursor:zoom-out;">
         <img id="afy-meta-lightbox-img" src="" style="max-width:90vw; max-height:90vh; border-radius:8px; box-shadow:0 10px 25px rgba(0,0,0,0.5);">
     </div>
